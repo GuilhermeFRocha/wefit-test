@@ -1,42 +1,5 @@
 import styled from "styled-components";
 
-export const MainContainer = styled.main`
-  background-color: #2f2e41;
-`;
-
-export const CardContainer = styled.div`
-  display: grid;
-  gap: 16px;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding-bottom: 40px;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-export const CardSearch = styled.div`
-  margin: 0 auto 24px auto;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  max-width: 1200px;
-  width: 100%;
-
-  input {
-    width: 100%;
-    border: none;
-    outline: none;
-    font: 1rem;
-    font-weight: 400;
-    line-height: 21px;
-    color: #2f2e41;
-
-    &::placeholder {
-      color: #c0c0c0;
-    }
-  }
-`;
-
 export const CardContent = styled.div`
   display: grid;
   gap: 8px;

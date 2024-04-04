@@ -1,17 +1,8 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
-import {
-  MainContainer,
-  CardContainer,
-  CardContent,
-  CardImage,
-  CardButton,
-  CardTitle,
-  CardPrice,
-  CardSearch,
-} from "./style";
+import { MainContainer, CardContainer, CardSearch } from "./style";
 import { fetchProducts } from "../../utils/api";
-import ShoppingCart from "../../assets/shoppingcart.svg";
+import { Card } from "../../components/Card.tsx";
 
 interface ProductProps {
   id: number;
@@ -22,6 +13,7 @@ interface ProductProps {
 
 export function Home() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchProducts()
@@ -33,36 +25,31 @@ export function Home() {
       });
   }, []);
 
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const query = event.target.value.toLowerCase();
+    setSearch(query);
+  }
+
   return (
     <>
       <Header />
 
       <MainContainer>
-        <CardSearch className="w-full ">
-          <input type="text" placeholder="Buscar filme pelo nome" />
+        <CardSearch>
+          <input
+            type="text"
+            placeholder="Buscar filme pelo nome"
+            onChange={handleChange}
+          />
         </CardSearch>
         <CardContainer>
-          {products.map((product: ProductProps) => (
-            <CardContent key={product.id}>
-              <CardImage>
-                <img src={product.image} alt={product.title} />
-              </CardImage>
-              <CardTitle>{product.title}</CardTitle>
-              <CardPrice>
-                R${" "}
-                {product.price.toLocaleString("pt-BR", {
-                  minimumFractionDigits: 2,
-                })}
-              </CardPrice>
-              <CardButton type="button">
-                <div>
-                  <img src={ShoppingCart} alt="carrinho de compras" />
-                  <span>0</span>
-                </div>
-                <p>Adicionar ao carrinho</p>
-              </CardButton>
-            </CardContent>
-          ))}
+          {products
+            .filter((product: ProductProps) =>
+              product.title.toLowerCase().includes(search)
+            )
+            .map((product: ProductProps) => {
+              return <Card key={product.id} prod={product} />;
+            })}
         </CardContainer>
       </MainContainer>
     </>
