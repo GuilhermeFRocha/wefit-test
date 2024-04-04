@@ -1,5 +1,5 @@
-import Cart from "../../assets/cart.svg";
-import { HeaderCart, HeaderContainer, HeaderTitle } from "./style";
+import Cart from '../../assets/cart.svg'
+import { HeaderCart, HeaderContainer, HeaderTitle } from './style'
 
 export function Header() {
   return (
@@ -14,5 +14,5 @@ export function Header() {
         <img src={Cart} alt="carrinho de compras" />
       </HeaderCart>
     </HeaderContainer>
-  );
+  )
 }

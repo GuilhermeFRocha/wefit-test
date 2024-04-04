@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -6,14 +6,14 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 2rem 1rem;
   background-color: #2f2e41;
-`;
+`
 
 export const HeaderTitle = styled.h1`
   font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.7rem;
-`;
+`
 
 export const HeaderCart = styled.div`
   display: flex;
@@ -37,4 +37,4 @@ export const HeaderCart = styled.div`
       line-height: 16px;
     }
   }
-`;
+`
