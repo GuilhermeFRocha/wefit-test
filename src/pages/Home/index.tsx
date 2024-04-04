@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { MainContainer, CardContainer, CardSearch } from "./style";
 import { fetchProducts } from "../../utils/api";
@@ -12,8 +13,9 @@ interface ProductProps {
 }
 
 export function Home() {
-  const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [products, setProducts] = useState<ProductProps[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts()
@@ -25,10 +27,18 @@ export function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    navigate(`/?search=${search}`);
+  }, [search, navigate]);
+
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const query = event.target.value.toLowerCase();
     setSearch(query);
   }
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(search)
+  );
 
   return (
     <>
@@ -43,13 +53,9 @@ export function Home() {
           />
         </CardSearch>
         <CardContainer>
-          {products
-            .filter((product: ProductProps) =>
-              product.title.toLowerCase().includes(search)
-            )
-            .map((product: ProductProps) => {
-              return <Card key={product.id} prod={product} />;
-            })}
+          {filteredProducts.map((product: ProductProps) => {
+            return <Card key={product.id} prod={product} />;
+          })}
         </CardContainer>
       </MainContainer>
     </>

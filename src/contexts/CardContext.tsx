@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
-interface AddedCartProps {
+interface ProductProps {
   id: number;
   title: string;
   price: number;
@@ -8,10 +8,10 @@ interface AddedCartProps {
 }
 
 interface CycleContextType {
-  handleBuy: (props: any, date: number) => void;
+  handleBuy: (props: ProductProps, date: number) => void;
   numbershop: number;
   setNumberShop: React.Dispatch<React.SetStateAction<number>>;
-  addedCart: AddedCartProps[];
+  addedCart: ProductProps[];
 }
 
 export const Context = createContext({} as CycleContextType);
@@ -21,14 +21,22 @@ interface Props {
 }
 
 export function ContextProvider({ children }: Props) {
-  const [numbershop, setNumberShop] = useState(0);
+  const [numbershop, setNumberShop] = useState(() => {
+    const savedNumberShop = localStorage.getItem("numbershop");
+    return savedNumberShop ? parseInt(savedNumberShop, 10) : 0;
+  });
+  const [addedCart, setAddedCart] = useState<ProductProps[]>(() => {
+    const savedCart = localStorage.getItem("addedCart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-  const initialState: any[] = [];
+  useEffect(() => {
+    localStorage.setItem("numbershop", numbershop.toString());
+    localStorage.setItem("addedCart", JSON.stringify(addedCart));
+  }, [numbershop, addedCart]);
 
-  const [addedCart, setAddedCart] = useState(initialState);
-
-  function handleBuy(props: any, date: any) {
-    setNumberShop(numbershop + date);
+  function handleBuy(props: ProductProps, date: number) {
+    setNumberShop(numbershop + 1);
     setAddedCart((current) => [...current, props]);
   }
 
