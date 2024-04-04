@@ -30,3 +30,15 @@ export const ErrorContainer = styled.main`
     cursor: pointer;
   }
 `;
+
+export const CheckoutContainer = styled.div`
+  display: grid;
+`;
+
+export const CheckoutContent = styled.div`
+  display: flex;
+`;
+
+export const CheckoutFinish = styled.div`
+  display: flex;
+`;

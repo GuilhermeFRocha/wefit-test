@@ -1,12 +1,17 @@
 import { createContext, ReactNode, useState } from "react";
 
+interface AddedCartProps {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+}
+
 interface CycleContextType {
   handleBuy: (props: any, date: number) => void;
   numbershop: number;
   setNumberShop: React.Dispatch<React.SetStateAction<number>>;
-  dateItems: any;
-  setDateItems: React.Dispatch<React.SetStateAction<never[]>>;
-  employees: any;
+  addedCart: AddedCartProps[];
 }
 
 export const Context = createContext({} as CycleContextType);
@@ -17,15 +22,14 @@ interface Props {
 
 export function ContextProvider({ children }: Props) {
   const [numbershop, setNumberShop] = useState(0);
-  const [dateItems, setDateItems] = useState([]);
 
   const initialState: any[] = [];
 
-  const [employees, setEmployees] = useState(initialState);
+  const [addedCart, setAddedCart] = useState(initialState);
 
   function handleBuy(props: any, date: any) {
     setNumberShop(numbershop + date);
-    setEmployees((current) => [...current, props]);
+    setAddedCart((current) => [...current, props]);
   }
 
   return (
@@ -34,9 +38,7 @@ export function ContextProvider({ children }: Props) {
         handleBuy,
         numbershop,
         setNumberShop,
-        dateItems,
-        setDateItems,
-        employees,
+        addedCart,
       }}
     >
       {children}
