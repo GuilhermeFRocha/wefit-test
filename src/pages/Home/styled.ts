@@ -6,21 +6,29 @@ export const MainContainer = styled.main`
 
 export const CardContainer = styled.div`
   display: grid;
-  gap: 16px;
+  gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
   padding-bottom: 40px;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
 `;
 
 export const CardSearch = styled.div`
-  margin: 0 auto 24px auto;
+  display: flex;
+  margin: 0 auto;
   padding: 16px;
   border-radius: 8px;
   background-color: #ffffff;
   max-width: 1200px;
   width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 
   input {
     width: 100%;
@@ -34,6 +42,10 @@ export const CardSearch = styled.div`
     &::placeholder {
       color: #c0c0c0;
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;
 

@@ -1,29 +1,30 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { MainContainer, CardContainer, CardSearch } from "./style";
+import { MainContainer, CardContainer, CardSearch } from "./styled.ts";
 import { fetchProducts } from "../../utils/api";
 import { Card } from "../../components/Card.tsx";
-
-interface ProductProps {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-}
+import { ProductProps } from "../../contexts/CardContext.tsx";
+import Lupa from "../../assets/lupa.svg";
+import { Loading } from "../../components/Loading/index.tsx";
 
 export function Home() {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     fetchProducts()
       .then((data) => {
         setProducts(data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Erro ao obter os produtos:", error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -55,12 +56,17 @@ export function Home() {
             placeholder="Buscar filme pelo nome"
             onChange={handleChange}
           />
+          <img src={Lupa} alt="lupa" />
         </CardSearch>
-        <CardContainer>
-          {filteredProducts.map((product: ProductProps) => {
-            return <Card key={product.id} prod={product} />;
-          })}
-        </CardContainer>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <CardContainer>
+            {filteredProducts.map((product: ProductProps) => {
+              return <Card key={product.id} prod={product} />;
+            })}
+          </CardContainer>
+        )}
       </MainContainer>
     </>
   );

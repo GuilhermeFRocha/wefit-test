@@ -45,6 +45,8 @@ export function ContextProvider({ children }: Props) {
   function handleDelete(id: number) {
     setNumberShop(numbershop - 1);
     setAddedCart(addedCart.filter((cart) => cart.id !== id));
+    localStorage.setItem(`date-${id}`, String(0));
+    localStorage.setItem(`added-${id}`, "");
   }
 
   return (

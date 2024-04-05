@@ -7,7 +7,6 @@ export const CardContent = styled.div`
   text-align: center;
   border-radius: 4px;
   padding: 16px;
-  margin: 0 auto;
 `;
 
 export const CardImage = styled.div`
@@ -35,6 +34,7 @@ export const CardPrice = styled.p`
 export const CardButton = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background-color: #009edd;
   padding: 11px 56px;

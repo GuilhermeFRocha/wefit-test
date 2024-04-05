@@ -4,8 +4,14 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 1rem;
+  padding-block: 2rem;
   background-color: #2f2e41;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 export const HeaderTitle = styled.h1`

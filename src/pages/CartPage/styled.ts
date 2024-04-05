@@ -36,13 +36,18 @@ export const CheckoutContainer = styled.div`
 `;
 
 export const CheckoutContent = styled.div`
-  width: 80%;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   padding: 24px;
+  max-width: 1200px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 export const CheckoutInfo = styled.div`
@@ -112,6 +117,13 @@ export const CheckoutButton = styled.div`
 
 export const CheckoutTotal = styled.div`
   display: grid;
+
+  span {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2f2e41;
+    line-height: 20px;
+  }
 `;
 
 export const CheckoutTitle = styled.h3`
@@ -119,6 +131,9 @@ export const CheckoutTitle = styled.h3`
   font-weight: 700;
   color: #999999;
   line-height: 19px;
+
+  @media (max-width: 425px) {
+  }
 `;
 
 export const CheckoutFinish = styled.div`
@@ -127,6 +142,15 @@ export const CheckoutFinish = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 16px;
+
+    a {
+      width: 100%;
+    }
+  }
 `;
 
 export const CheckoutButtonFinish = styled.button`
@@ -158,6 +182,11 @@ export const CheckoutPrice = styled.div`
     font-weight: 700;
     color: #2f2e41;
     line-height: 32px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-between;
   }
 `;
 

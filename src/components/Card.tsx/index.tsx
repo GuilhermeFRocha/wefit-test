@@ -5,17 +5,10 @@ import {
   CardImage,
   CardPrice,
   CardTitle,
-} from "./style";
+} from "./styled";
 import ShoppingCart from "../../assets/shoppingcart.svg";
 import { useContext } from "react";
-import { Context } from "../../contexts/CardContext";
-
-interface ProductProps {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-}
+import { Context, ProductProps } from "../../contexts/CardContext";
 
 interface CardProps {
   prod: ProductProps;

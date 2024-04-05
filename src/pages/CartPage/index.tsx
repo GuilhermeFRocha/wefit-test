@@ -24,7 +24,7 @@ import {
   CheckoutTitle,
   CheckoutTotal,
   ErrorContainer,
-} from "./style";
+} from "./styled";
 import { Link } from "react-router-dom";
 
 interface AddedCartProps {
@@ -80,7 +80,9 @@ export function CartPage() {
 
           <img src={ErroCart} alt="erro ao encontrar carrinho" />
 
-          <button>Recarregar página</button>
+          <button onClick={() => window.location.reload()}>
+            Recarregar página
+          </button>
         </ErrorContainer>
       ) : (
         <CheckoutContainer>

@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const SuccessContainer = styled.div`
   background-color: #fff;
-  margin: 1rem;
   gap: 24px;
   text-align: center;
   display: grid;
   justify-items: center;
-  padding-top: 64px;
-  padding-bottom: 102px;
+  padding: 40px;
   border-radius: 4px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 
   p {
     font-size: 1.5rem;
@@ -32,5 +33,9 @@ export const SuccessContainer = styled.div`
     font-size: 0.75rem;
     line-height: 16px;
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;

@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { SuccessContainer } from "./style";
+import { SuccessContainer } from "./styled";
 import SuccessImage from "../../assets/success.svg";
 
 export function SuccessPage() {
