@@ -17,7 +17,7 @@ export const ErrorContainer = styled.main`
     color: #2f2e41;
     line-height: 27px;
   }
-
+  
   button {
     background-color: #009edd;
     border-radius: 4px;
@@ -28,6 +28,12 @@ export const ErrorContainer = styled.main`
     font-size: 0.75rem;
     line-height: 16px;
     cursor: pointer;
+  }
+
+  @media (max-width: 560px) {
+    img {
+      width: 100%;
+    }
   }
 `;
 
