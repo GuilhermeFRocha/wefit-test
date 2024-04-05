@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface CardButtonProps {
+  date: number;
+}
+
 export const CardContent = styled.div`
   display: grid;
   gap: 8px;
@@ -31,12 +35,14 @@ export const CardPrice = styled.p`
   line-height: 21px;
 `;
 
-export const CardButton = styled.button`
+export const CardButton = styled.button<CardButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   background-color: #009edd;
+  background-color: ${({ date }) =>
+    date === 1 ? '#039B00' : '#009EDD'};
   padding: 11px 56px;
   border-radius: 4px;
   border: none;
@@ -62,3 +68,4 @@ export const CardButton = styled.button`
     white-space: nowrap;
   }
 `;
+

@@ -108,7 +108,7 @@ export function CartPage() {
                     <button onClick={() => handleDecrement(addedCart.id)}>
                       <img src={MinusButton} alt="" />
                     </button>
-                    <p>{quantities[index]}</p>
+                    <span>{quantities[index]}</span>
                     <button onClick={() => handleIncrement(addedCart.id)}>
                       <img src={PlusButton} alt="" />
                     </button>

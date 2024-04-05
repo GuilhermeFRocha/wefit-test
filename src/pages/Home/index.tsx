@@ -54,9 +54,9 @@ export function Home() {
           <input
             type="text"
             placeholder="Buscar filme pelo nome"
-            onChange={handleChange}
+            onBlur={handleChange}
           />
-          <img src={Lupa} alt="lupa" />
+          <img src={Lupa} alt="lupa" onClick={() => handleChange}/>
         </CardSearch>
         {isLoading ? (
           <Loading />

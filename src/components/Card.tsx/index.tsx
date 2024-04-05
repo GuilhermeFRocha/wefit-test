@@ -53,7 +53,7 @@ export function Card({ prod }: CardProps) {
             minimumFractionDigits: 2,
           })}
         </CardPrice>
-        <CardButton onClick={handleAddToCart}>
+        <CardButton onClick={handleAddToCart} date={date}>
           <div>
             <img src={ShoppingCart} alt="carrinho de compras" />
             <span>{date}</span>

@@ -30,6 +30,10 @@ export const CardSearch = styled.div`
   box-sizing: border-box;
   margin-bottom: 20px;
 
+  img {
+      cursor: pointer;
+    }
+
   input {
     width: 100%;
     border: none;

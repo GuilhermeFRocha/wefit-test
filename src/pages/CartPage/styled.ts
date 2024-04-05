@@ -54,6 +54,12 @@ export const CheckoutInfo = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 24px;
+
+  @media (max-width: 560px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+  }
 `;
 
 export const CheckoutProduct = styled.div`
@@ -106,6 +112,16 @@ export const CheckoutButton = styled.div`
   display: flex;
   align-items: center;
   gap: 11px;
+
+  span {
+    padding: 4px 26px;
+    border-radius: 16px;
+    border: 1px solid #D9D9D9;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 19px;
+    color: #2f2e41;
+  }
 
   button {
     border: none;
@@ -193,6 +209,10 @@ export const CheckoutPrice = styled.div`
 export const CheckoutDelete = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+   margin: 0 auto;
+  }
 
   button {
     border: none;
