@@ -9,6 +9,7 @@ export const SuccessContainer = styled.div`
   padding: 40px;
   border-radius: 4px;
   max-width: 1200px;
+  width: calc(100% - 80px);
   margin: 0 auto;
   box-sizing: border-box;
 

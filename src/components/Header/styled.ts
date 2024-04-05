@@ -7,6 +7,7 @@ export const HeaderContainer = styled.header`
   padding-block: 2rem;
   background-color: #2f2e41;
   max-width: 1200px;
+  padding-inline: 40px;
   margin: 0 auto;
 
   @media (max-width: 768px) {

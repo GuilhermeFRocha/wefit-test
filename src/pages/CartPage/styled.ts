@@ -17,7 +17,7 @@ export const ErrorContainer = styled.main`
     color: #2f2e41;
     line-height: 27px;
   }
-  
+
   button {
     background-color: #009edd;
     border-radius: 4px;
@@ -50,6 +50,7 @@ export const CheckoutContent = styled.div`
   padding: 24px;
   max-width: 1200px;
   box-sizing: border-box;
+  width: calc(100% - 80px);
 
   @media (max-width: 768px) {
     width: 90%;
@@ -122,7 +123,7 @@ export const CheckoutButton = styled.div`
   span {
     padding: 4px 26px;
     border-radius: 16px;
-    border: 1px solid #D9D9D9;
+    border: 1px solid #d9d9d9;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 19px;
@@ -217,7 +218,7 @@ export const CheckoutDelete = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-   margin: 0 auto;
+    margin: 0 auto;
   }
 
   button {

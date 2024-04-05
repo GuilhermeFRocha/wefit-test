@@ -10,7 +10,8 @@ export const CardContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   padding-bottom: 40px;
   max-width: 1200px;
-  width: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 80px);
   margin: 0 auto;
 
   @media (max-width: 768px) {
@@ -26,13 +27,14 @@ export const CardSearch = styled.div`
   border-radius: 8px;
   background-color: #ffffff;
   max-width: 1200px;
-  width: 100%;
+  padding-inline: 40px;
+  width: calc(100% - 80px);
   box-sizing: border-box;
   margin-bottom: 20px;
 
   img {
-      cursor: pointer;
-    }
+    cursor: pointer;
+  }
 
   input {
     width: 100%;
