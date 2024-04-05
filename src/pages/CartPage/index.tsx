@@ -35,7 +35,7 @@ interface AddedCartProps {
 }
 
 export function CartPage() {
-  const { addedCart } = useContext(Context);
+  const { addedCart, handleDelete } = useContext(Context);
   const [quantities, setQuantities] = useState<number[]>(
     addedCart.map(() => 1)
   );
@@ -64,6 +64,10 @@ export function CartPage() {
       .toFixed(2);
 
     return totalPrice;
+  }
+
+  function handleClick(id: number) {
+    handleDelete(id);
   }
 
   return (
@@ -115,7 +119,7 @@ export function CartPage() {
                   </span>
                 </CheckoutTotal>
                 <CheckoutDelete>
-                  <button>
+                  <button onClick={() => handleClick(addedCart.id)}>
                     <img src={DeleteButton} alt="" />
                   </button>
                 </CheckoutDelete>

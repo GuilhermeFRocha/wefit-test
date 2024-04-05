@@ -9,6 +9,7 @@ export interface ProductProps {
 
 interface CycleContextType {
   handleBuy: (props: ProductProps, date: number) => void;
+  handleDelete: (id: number) => void;
   numbershop: number;
   setNumberShop: React.Dispatch<React.SetStateAction<number>>;
   addedCart: ProductProps[];
@@ -41,10 +42,16 @@ export function ContextProvider({ children }: Props) {
     setAddedCart((current) => [...current, props]);
   }
 
+  function handleDelete(id: number) {
+    setNumberShop(numbershop - 1);
+    setAddedCart(addedCart.filter((cart) => cart.id !== id));
+  }
+
   return (
     <Context.Provider
       value={{
         handleBuy,
+        handleDelete,
         numbershop,
         setNumberShop,
         addedCart,
