@@ -35,6 +35,10 @@ export const HeaderCart = styled.div`
       font-weight: 600;
       color: #fff;
       line-height: 19px;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
 
     span {
