@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 
-interface ProductProps {
+export interface ProductProps {
   id: number;
   title: string;
   price: number;
@@ -12,6 +12,7 @@ interface CycleContextType {
   numbershop: number;
   setNumberShop: React.Dispatch<React.SetStateAction<number>>;
   addedCart: ProductProps[];
+  setAddedCart: React.Dispatch<React.SetStateAction<ProductProps[]>>;
 }
 
 export const Context = createContext({} as CycleContextType);
@@ -47,6 +48,7 @@ export function ContextProvider({ children }: Props) {
         numbershop,
         setNumberShop,
         addedCart,
+        setAddedCart,
       }}
     >
       {children}

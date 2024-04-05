@@ -28,7 +28,11 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    navigate(`/?search=${search}`);
+    if (search) {
+      navigate(`/?search=${search}`);
+      return;
+    }
+    navigate("/");
   }, [search, navigate]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {

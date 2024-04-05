@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { Context } from "../../contexts/CardContext";
+import { useContext, useState } from "react";
+import { Context, ProductProps } from "../../contexts/CardContext";
 import { Header } from "../../components/Header";
 
 import ErroCart from "../../assets/notcart.svg";
@@ -13,6 +13,7 @@ import {
   CheckoutButtonFinish,
   CheckoutContainer,
   CheckoutContent,
+  CheckoutDelete,
   CheckoutDesc,
   CheckoutDetail,
   CheckoutFinish,
@@ -24,6 +25,7 @@ import {
   CheckoutTotal,
   ErrorContainer,
 } from "./style";
+import { Link } from "react-router-dom";
 
 interface AddedCartProps {
   id: number;
@@ -38,18 +40,30 @@ export function CartPage() {
     addedCart.map(() => 1)
   );
 
-  function handleIncrement(index: number) {
+  function handleIncrement(id: number) {
     const newQuantities = [...quantities];
-    newQuantities[index]++;
-    setQuantities(newQuantities);
+    const index = addedCart.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      newQuantities[index]++;
+      setQuantities(newQuantities);
+    }
   }
 
-  function handleDecrement(index: number) {
+  function handleDecrement(id: number) {
     const newQuantities = [...quantities];
-    if (newQuantities[index] > 1) {
+    const index = addedCart.findIndex((item) => item.id === id);
+    if (index !== -1 && newQuantities[index] > 1) {
       newQuantities[index]--;
       setQuantities(newQuantities);
     }
+  }
+
+  function formateTotalPrice(cart: ProductProps[]) {
+    const totalPrice = cart
+      .reduce((acc, added, index) => acc + added.price * quantities[index], 0)
+      .toFixed(2);
+
+    return totalPrice;
   }
 
   return (
@@ -67,17 +81,17 @@ export function CartPage() {
       ) : (
         <CheckoutContainer>
           <CheckoutContent>
-            {addedCart.map((added: AddedCartProps, index: number) => (
-              <CheckoutInfo key={added.id}>
+            {addedCart.map((addedCart: AddedCartProps, index: number) => (
+              <CheckoutInfo key={addedCart.id}>
                 <CheckoutProduct>
                   <CheckoutTitle>PRODUTO</CheckoutTitle>
                   <CheckoutDetail>
                     <CheckoutImage>
-                      <img src={added.image} alt="" />
+                      <img src={addedCart.image} alt="" />
                     </CheckoutImage>
                     <CheckoutDesc>
-                      <p>{added.title}</p>
-                      <span>R$ {added.price}</span>
+                      <p>{addedCart.title}</p>
+                      <span>R$ {addedCart.price}</span>
                     </CheckoutDesc>
                   </CheckoutDetail>
                 </CheckoutProduct>
@@ -85,41 +99,36 @@ export function CartPage() {
                 <CheckoutAmount>
                   <CheckoutTitle>QTD</CheckoutTitle>
                   <CheckoutButton>
-                    <button onClick={() => handleDecrement(index)}>
+                    <button onClick={() => handleDecrement(addedCart.id)}>
                       <img src={MinusButton} alt="" />
                     </button>
                     <p>{quantities[index]}</p>
-                    <button onClick={() => handleIncrement(index)}>
+                    <button onClick={() => handleIncrement(addedCart.id)}>
                       <img src={PlusButton} alt="" />
                     </button>
                   </CheckoutButton>
                 </CheckoutAmount>
                 <CheckoutTotal>
                   <CheckoutTitle>SUBTOTAL</CheckoutTitle>
-                  <span>R$ {(added.price * quantities[index]).toFixed(2)}</span>
+                  <span>
+                    R$ {(addedCart.price * quantities[index]).toFixed(2)}
+                  </span>
                 </CheckoutTotal>
-                <div>
+                <CheckoutDelete>
                   <button>
                     <img src={DeleteButton} alt="" />
                   </button>
-                </div>
+                </CheckoutDelete>
               </CheckoutInfo>
             ))}
 
             <CheckoutFinish>
-              <CheckoutButtonFinish>Finalizar pedido</CheckoutButtonFinish>
+              <Link to="/success">
+                <CheckoutButtonFinish>Finalizar pedido</CheckoutButtonFinish>
+              </Link>
               <CheckoutPrice>
                 <p>TOTAL</p>
-                <span>
-                  R$
-                  {addedCart
-                    .reduce(
-                      (acc, added, index) =>
-                        acc + added.price * quantities[index],
-                      0
-                    )
-                    .toFixed(2)}
-                </span>
+                <span>R${formateTotalPrice(addedCart)}</span>
               </CheckoutPrice>
             </CheckoutFinish>
           </CheckoutContent>
