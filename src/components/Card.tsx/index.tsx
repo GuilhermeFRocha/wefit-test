@@ -28,14 +28,23 @@ export function Card({ prod }: CardProps) {
     return savedDate ? parseInt(savedDate, 10) : 0;
   });
 
+  const [addedToCart, setAddedToCart] = useState(() => {
+    const alreadyAdded = localStorage.getItem(`added-${prod.id}`);
+    return alreadyAdded ? true : false;
+  });
+
   useEffect(() => {
     localStorage.setItem(`date-${prod.id}`, String(date));
   }, [date, prod.id]);
 
   const handleAddToCart = () => {
-    const updatedDate = date + 1;
-    setDate(updatedDate);
-    handleBuy(prod, updatedDate);
+    if (!addedToCart) {
+      const updatedDate = date + 1;
+      setDate(updatedDate);
+      handleBuy(prod, updatedDate);
+      setAddedToCart(true);
+      localStorage.setItem(`added-${prod.id}`, "true");
+    }
   };
 
   return (

@@ -35,7 +35,7 @@ export function ContextProvider({ children }: Props) {
     localStorage.setItem("addedCart", JSON.stringify(addedCart));
   }, [numbershop, addedCart]);
 
-  function handleBuy(props: ProductProps, date: number) {
+  function handleBuy(props: ProductProps) {
     setNumberShop(numbershop + 1);
     setAddedCart((current) => [...current, props]);
   }

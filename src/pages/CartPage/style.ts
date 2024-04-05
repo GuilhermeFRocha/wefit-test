@@ -139,7 +139,7 @@ export const CheckoutButtonFinish = styled.button`
 export const CheckoutPrice = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 
   p {
     font-size: 0.875rem;
